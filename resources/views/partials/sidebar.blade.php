@@ -1,6 +1,5 @@
 <aside class="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col">
     <div class="p-4 border-b flex items-center gap-2">
-        <span class="text-green-500 text-2xl font-bold">$</span>
         <span class="text-xl font-bold">Infinity Finace</span>
     </div>
     <nav class="flex-1 overflow-y-auto p-4">
