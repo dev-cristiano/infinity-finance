@@ -3,15 +3,20 @@
 namespace App\Models\Api;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Api\Category;
 
 class Transaction extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'title',
         'type',
@@ -22,21 +27,39 @@ class Transaction extends Model
         'user_id'
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
     protected $casts = [
         'date' => 'datetime',
         'amount' => 'decimal:2',
     ];
 
-    public function user()
+    /**
+     * Get the user that owns the transaction.
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function category()
+    /**
+     * Get the category that owns the transaction.
+     */
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * Scope a query to only include transactions of a given type.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  mixed  $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeOfType($query, $type)
     {
         return $query->where('type', $type);
