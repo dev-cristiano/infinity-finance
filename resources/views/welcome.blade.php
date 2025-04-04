@@ -22,7 +22,7 @@
             <div class="container mx-auto px-4 flex h-16 items-center justify-between">
                 <div class="flex items-center gap-2">
                     <span class="text-yellow-500 text-2xl font-bold">$</span>
-                    <span class="text-xl font-bold">FinTrack</span>
+                    <span class="text-xl font-bold">Infinity Finace</span>
                 </div>
                 <nav class="hidden md:flex gap-6">
                     <a href="#features" class="text-sm font-medium hover:text-yellow-500">Features</a>
@@ -114,9 +114,9 @@
             <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center gap-2">
                     <span class="text-yellow-500 text-xl font-bold">$</span>
-                    <span class="text-xl font-bold">FinTrack</span>
+                    <span class="text-xl font-bold">Infinity Finace</span>
                 </div>
-                <p class="text-sm text-gray-500">&copy; {{ date('Y') }} FinTrack. All rights reserved.</p>
+                <p class="text-sm text-gray-500">&copy; {{ date('Y') }} Infinity Finace. All rights reserved.</p>
                 <div class="flex gap-4">
                     <a href="#" class="text-sm text-gray-500 hover:text-yellow-500">Terms</a>
                     <a href="#" class="text-sm text-gray-500 hover:text-yellow-500">Privacy</a>
