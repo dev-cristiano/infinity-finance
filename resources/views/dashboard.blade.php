@@ -7,7 +7,7 @@
             <p class="mt-1 text-sm text-gray-500">Bem-vindo de volta, {{ Auth::user()->name }}! Aqui está uma visão geral das suas finanças.</p>
         </div>
         <div class="relative">
-            <x-modal.new-transaction />
+            <x-modal.new-transaction :categories="$categories" />
         </div>
     </div>
     <!-- Cards -->
@@ -111,7 +111,7 @@
 
     <div class="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-2">
         <!-- Gráfico de Receitas -->
-        <div class="bg-white shadow rounded-lg">
+        <div class="bg-white shadow rounded-lg mt-6">
             <div class="px-5 py-4 border-b border-gray-200">
                 <h3 class="text-lg font-medium text-gray-900">Receitas Mensais</h3>
             </div>
