@@ -1,5 +1,5 @@
 <header class="bg-white border-b border-gray-200" x-data="{ openNotifications: false, openProfile: false }">
-    <div class="px-4 py-4 flex items-center justify-between sm:px-6 lg:px-8">
+    <div class="px-4 py-3 flex items-center justify-between sm:px-6 lg:px-8">
         <div class="flex items-center md:hidden">
             <span class="text-yellow-500 text-2xl font-bold">$</span>
             <span class="text-xl font-bold">Infinity Finance</span>
@@ -58,14 +58,22 @@
 
             <!-- Dropdown Perfil -->
             <div class="border-l pl-4 flex items-center gap-2 relative">
-                <button
-                    @click="openProfile = !openProfile"
-                    class="flex items-center gap-2 focus:outline-none">
-                    <span class="text-sm font-medium text-gray-700">{{ Auth::user()->name }}</span>
-                    <div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
-                        <span class="text-xs font-medium text-gray-600">CR</span>
+                <div class="flex items-center gap-4">
+                    <div class="flex flex-col">
+                        <span class="text-sm font-medium text-gray-700">{{ Auth::user()->name }}</span>
+                        <span class="text-xs text-gray-500">{{ Auth::user()->email }}</span>
                     </div>
-                </button>
+                    <span class="text-sm font-medium text-gray-500">|</span>
+                    <button
+                        @click="openProfile = !openProfile"
+                        class="flex items-center gap-2 focus:outline-none">
+                        <div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
+                            <span class="text-xs font-medium text-gray-600">
+                                {{ substr(Auth::user()->name, 0, 1) }}{{ substr(explode(' ', Auth::user()->name)[1] ?? '', 0, 1) }}
+                            </span>
+                        </div>
+                    </button>
+                </div>
 
                 <!-- Dropdown Content -->
                 <div

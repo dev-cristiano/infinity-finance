@@ -18,7 +18,7 @@
             <form id="transactionForm" action="{{ route('transactions.store') }}" method="POST">
                 @csrf
 
-                <input type="text" name="user_id" value="" hidden>
+                <input type="text" name="user_id" value="{{ Auth::user()->id }}" hidden>
                 <div class="mb-6">
                     <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Título*</label>
                     <input type="text" name="title" id="title"
@@ -31,8 +31,9 @@
                         <label for="type" class="block text-sm font-medium text-gray-700 mb-2">Tipo*</label>
                         <select name="type" id="type"
                             class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:ring-2 focus:ring-green-500 focus:border-green-500" required>
-                            <option value="1">Despesa</option>
-                            <option value="2">Renda</option>
+                            <option value="">Selecione o tipo</option>
+                            <option value="2">Receitas</option>
+                            <option value="1">Despesas</option>
                         </select>
                     </div>
 

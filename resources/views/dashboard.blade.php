@@ -7,7 +7,7 @@
             <p class="mt-1 text-sm text-gray-500">Bem-vindo de volta, {{ Auth::user()->name }}! Aqui está uma visão geral das suas finanças.</p>
         </div>
         <div class="relative">
-            <x-modal.new-transaction  />
+            <x-modal.new-transaction />
         </div>
     </div>
     <!-- Cards -->
@@ -24,7 +24,7 @@
                     <div class="ml-5 w-0 flex-1">
                         <dl>
                             <dt class="text-sm font-medium text-gray-500 truncate">Saldo total</dt>
-                            <dd class="text-lg font-semibold text-gray-900">${{ number_format($data['total'], 2, ',', '.') }}</dd>
+                            <dd class="text-lg font-semibold text-gray-900">R${{ number_format($data['total'], 2, ',', '.') }}</dd>
                         </dl>
                     </div>
                 </div>
@@ -47,8 +47,8 @@
                     </div>
                     <div class="ml-5 w-0 flex-1">
                         <dl>
-                            <dt class="text-sm font-medium text-gray-500 truncate">Renda (este mês)</dt>
-                            <dd class="text-lg font-semibold text-gray-900">${{ number_format($data['incomes'], 2, ',', '.') }}</dd>
+                            <dt class="text-sm font-medium text-gray-500 truncate">Receita (este mês)</dt>
+                            <dd class="text-lg font-semibold text-gray-900">R${{ number_format($data['incomes'], 2, ',', '.') }}</dd>
                         </dl>
                     </div>
                 </div>
