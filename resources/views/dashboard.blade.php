@@ -48,7 +48,7 @@
                     <div class="ml-5 w-0 flex-1">
                         <dl>
                             <dt class="text-sm font-medium text-gray-500 truncate">Receita (este mês)</dt>
-                            <dd class="text-lg font-semibold text-gray-900">R${{ number_format($data['incomes'], 2, ',', '.') }}</dd>
+                            <dd class="text-lg font-semibold text-gray-900">R${{ number_format($data['receitas'], 2, ',', '.') }}</dd>
                         </dl>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                     <div class="ml-5 w-0 flex-1">
                         <dl>
                             <dt class="text-sm font-medium text-gray-500 truncate">Despesas (Este Mês)</dt>
-                            <dd class="text-lg font-semibold text-gray-900">R${{ number_format($data['expenses'], 2, ',', '.') }}</dd>
+                            <dd class="text-lg font-semibold text-gray-900">R${{ number_format($data['receitas'], 2, ',', '.') }}</dd>
                         </dl>
                     </div>
                 </div>

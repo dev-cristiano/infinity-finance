@@ -30,7 +30,6 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'type' => 'required|in:1,2',

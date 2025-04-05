@@ -1,7 +1,6 @@
 <header class="bg-white border-b border-gray-200" x-data="{ openNotifications: false, openProfile: false }">
     <div class="px-4 py-3 flex items-center justify-between sm:px-6 lg:px-8">
         <div class="flex items-center md:hidden">
-            <span class="text-yellow-500 text-2xl font-bold">$</span>
             <span class="text-xl font-bold">Infinity Finance</span>
         </div>
 
