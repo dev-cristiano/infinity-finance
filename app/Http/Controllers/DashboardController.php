@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Services\DashboardService;
+use App\Services\CategoryService;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(DashboardService $dashboardService, CategoryService $categoryService)
     {
-        $categories = auth()->user()->categories;
-
-        return view('dashboard', compact('categories'));
+        $data = $dashboardService->getDataForUser(auth()->user());
+        // dd($data);
+        return view('dashboard', compact(
+            'data'
+        ));
     }
 }

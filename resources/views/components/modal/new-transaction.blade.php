@@ -1,6 +1,3 @@
-@props(['categories'])
-
-<!-- Botão para abrir o modal de transação -->
 <div class="container mx-auto p-4">
     <button id="openTransaction" class="inline-flex items-center justify-center gap-2 rounded-md bg-green-500 hover:bg-green-600 text-white h-10 px-4 py-2 transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -21,7 +18,7 @@
             <form id="transactionForm" action="{{ route('transactions.store') }}" method="POST">
                 @csrf
 
-                <input type="text" name="user_id" value="{{ Auth::user()->id }}" hidden>
+                <input type="text" name="user_id" value="" hidden>
                 <div class="mb-6">
                     <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Título*</label>
                     <input type="text" name="title" id="title"
@@ -64,8 +61,8 @@
                     <select id="category_id" name="category_id"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500" required>
                         <option value="" selected>Selecione uma categoria</option>
-                        @foreach ($categories as $categorie)
-                        <option value="{{ $categorie->id }}">{{ $categorie->name }}</option>
+                        @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
 
@@ -226,33 +223,4 @@
             })
             .catch(error => console.error("Erro:", error));
     });
-
-    // AJAX para o formulário de transação (opcional)
-    // document.querySelector("#transactionForm").addEventListener("submit", function(event) {
-    //     event.preventDefault();
-
-    //     const form = event.target;
-    //     const formData = new FormData(form);
-
-    //     fetch(form.action, {
-    //             method: "POST",
-    //             headers: {
-    //                 "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-    //                 "Accept": "application/json",
-    //             },
-    //             body: formData
-    //         })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             if (data.success) {
-    //                 closeTransactionModal();
-    //                 form.reset();
-    //                 // Atualizar a lista de transações ou mostrar mensagem de sucesso
-    //                 alert("Transação cadastrada com sucesso!");
-    //             } else {
-    //                 alert("Erro ao cadastrar transação.");
-    //             }
-    //         })
-    //         .catch(error => console.error("Erro:", error));
-    // });
 </script>

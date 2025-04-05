@@ -7,7 +7,7 @@
             <p class="mt-1 text-sm text-gray-500">Bem-vindo de volta, {{ Auth::user()->name }}! Aqui está uma visão geral das suas finanças.</p>
         </div>
         <div class="relative">
-            <x-modal.new-transaction :categories="$categories" />
+            <x-modal.new-transaction  />
         </div>
     </div>
     <!-- Cards -->
@@ -24,7 +24,7 @@
                     <div class="ml-5 w-0 flex-1">
                         <dl>
                             <dt class="text-sm font-medium text-gray-500 truncate">Saldo total</dt>
-                            <dd class="text-lg font-semibold text-gray-900">$24,500.00</dd>
+                            <dd class="text-lg font-semibold text-gray-900">${{ number_format($data['total'], 2, ',', '.') }}</dd>
                         </dl>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="ml-5 w-0 flex-1">
                         <dl>
                             <dt class="text-sm font-medium text-gray-500 truncate">Renda (este mês)</dt>
-                            <dd class="text-lg font-semibold text-gray-900">$8,430.00</dd>
+                            <dd class="text-lg font-semibold text-gray-900">${{ number_format($data['incomes'], 2, ',', '.') }}</dd>
                         </dl>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                     <div class="ml-5 w-0 flex-1">
                         <dl>
                             <dt class="text-sm font-medium text-gray-500 truncate">Despesas (Este Mês)</dt>
-                            <dd class="text-lg font-semibold text-gray-900">$5,240.00</dd>
+                            <dd class="text-lg font-semibold text-gray-900">R${{ number_format($data['expenses'], 2, ',', '.') }}</dd>
                         </dl>
                     </div>
                 </div>
@@ -143,54 +143,31 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Data</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descrição</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Titulo</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Transação</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valor</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoria</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantia</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Criação</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- dd($data) -->
+                            @foreach ($data['transactions'] as $transaction)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Apr 2, 2025</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Coffee Shop</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Food & Drink</span>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">#</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">{{ $transaction->title }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                        {{ $transaction->type == 1 ? 'bg-red-100' : 'bg-green-100 text-green-800' }}">{{ $transaction->type_label }}</span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">-$4.50</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">{{ $transaction->date_formatted }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">{{ $transaction->formatted_amount }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">{{ $transaction->category_id }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">{{ $transaction->created_formatted }}</td>
                             </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Apr 1, 2025</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Salary Deposit</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Income</span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600">+$3,200.00</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mar 31, 2025</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Grocery Store</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Groceries</span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">-$85.25</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mar 30, 2025</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Monthly Rent</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">Housing</span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">-$1,200.00</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mar 29, 2025</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Online Shopping</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800">Shopping</span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">-$49.99</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

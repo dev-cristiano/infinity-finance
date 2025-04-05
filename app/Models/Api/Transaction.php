@@ -5,6 +5,7 @@ namespace App\Models\Api;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Api\Category;
 
@@ -33,7 +34,7 @@ class Transaction extends Model
      * @var array
      */
     protected $casts = [
-        'date' => 'datetime',
+        'date' => 'date',
         'amount' => 'decimal:2',
     ];
 
@@ -63,5 +64,28 @@ class Transaction extends Model
     public function scopeOfType($query, $type)
     {
         return $query->where('type', $type);
+    }
+
+    public function getFormattedAmountAttribute()
+    {
+        return 'R$' . number_format($this->amount, 2, ',', '.');
+    }
+
+    public function getDateFormattedAttribute()
+    {
+        return $this->date->format('d/m/Y');
+    }
+
+    public function getCreatedFormattedAttribute()
+    {
+        return $this->created_at->format('d/m/Y');
+    }
+
+    public function getTypeLabelAttribute()
+    {
+        return [
+            1 => 'Despesas',
+            2 => 'Receitas'
+        ][$this->type] ?? 'Desconhecido';
     }
 }
