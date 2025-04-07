@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "apexcharts": "^4.5.0",
+        "sweetalert2": "^11.17.2",
         "tailwindcss-animate": "^1.0.7"
     }
 }

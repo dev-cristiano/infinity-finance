@@ -60,3 +60,28 @@
             placeholder="Ex: Alerta de vencimento da fatura do cartão Nubank todo dia 10" />
     </x-form.form>
 </x-main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkbox = document.getElementById('recorrente');
+        const grupoInput = document.getElementById('grupo_data_alerta_final');
+        const valor = document.getElementById('valor');
+
+        function toggleInput() {
+            if (!checkbox.checked) {
+                grupoInput.style.display = 'none';
+                grupoInput.querySelector('input').removeAttribute('required');
+                grupoInput.querySelector('input').value = '';
+            } else {
+                grupoInput.style.display = 'block';
+                grupoInput.querySelector('input').setAttribute('required', 'required');
+            }
+        }
+
+        // Executa no carregamento inicial
+        toggleInput();
+
+        // Adiciona evento ao checkbox
+        checkbox.addEventListener('change', toggleInput);
+    });
+</script>

@@ -15,7 +15,7 @@ class AlertaController extends Controller
      */
     public function index()
     {
-        $alertas = Alerta::paginate(15);
+        $alertas = auth()->user()->alertas()->paginate(10);
         return view('alertas.index', compact('alertas'));
     }
 
@@ -69,7 +69,6 @@ class AlertaController extends Controller
             'user_id' => $request->user_id,
         ]);
 
-        notify()->success('Welcome to Laravel Notify ⚡️');
         return redirect()->route('alertas.index')->with('success', 'Alerta criado com sucesso!');
     }
 
@@ -136,8 +135,7 @@ class AlertaController extends Controller
             'updated_at' => now(),
         ]);
 
-        notify()->success('Welcome to Laravel Notify ⚡️');
-        return redirect()->route('alertas.index');
+        return redirect()->route('alertas.index')->with('success', 'Alerta atualizado com sucesso!');
     }
 
     /**
@@ -145,6 +143,8 @@ class AlertaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $alerta = Alerta::findOrFail($id);
+        $alerta->delete();
+        return redirect()->route('alertas.index')->with('success', 'Alerta excluído com sucesso!');
     }
 }

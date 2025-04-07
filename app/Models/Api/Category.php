@@ -24,7 +24,7 @@ class Category extends Model
         return $this->hasMany(Transaction::class);
     }
 
-    public function categories()
+    public function categories(): HasMany
     {
         return $this->hasMany(Category::class);
     }

@@ -19,7 +19,7 @@ export function initCharts() {
             type: "bar",
             height: "100%",
             toolbar: {
-                show: true,
+                show: false,
                 tools: {
                     download: true,
                     selection: false,

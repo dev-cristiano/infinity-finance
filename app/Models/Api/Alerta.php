@@ -37,7 +37,7 @@ class Alerta extends Model
         return date('d/m/Y', strtotime($value));
     }
 
-    public function getRecorrenteAttribute($value)
+    public function getAlertaRecorrenteAttribute($value)
     {
         return $value ? 'Sim' : 'Não';
     }
@@ -45,5 +45,16 @@ class Alerta extends Model
     public function getValorAttribute($value)
     {
         return 'R$ ' . number_format($value, 2, ',', '.');
+    }
+
+    public function getDataAtualStatusAttribute()
+    {
+        if ($this->data_alerta < date('Y-m-d')) {
+            return 'Em Dia';
+        } else if ($this->data_alerta == date('Y-m-d')) {
+            return 'Hoje';
+        } else if ($this->data_alerta > date('Y-m-d')) {
+            return 'Atrasado';
+        }
     }
 }

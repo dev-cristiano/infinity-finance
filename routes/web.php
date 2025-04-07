@@ -30,6 +30,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/alertas', [AlertaController::class, 'store'])->name('alertas.store');
     Route::get('/alertas/create', [AlertaController::class, 'create'])->name('alertas.create');
     Route::get('/alertas/{id}/edit', [AlertaController::class, 'edit'])->name('alertas.edit');
+    Route::delete('/alertas/{id}', [AlertaController::class, 'destroy'])->name('alertas.destroy');
 });
 
 require __DIR__ . '/auth.php';

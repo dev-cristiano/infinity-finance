@@ -1,5 +1,22 @@
 <x-main>
+    @php
+    $toast = session()->pull('toast');
+    @endphp
 
+    @if ($toast)
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof Toast !== 'undefined') {
+                Toast.fire({
+                    icon: `{{ e($toast['type']) }}`,
+                    title: `{{ e($toast['message']) }}`
+                });
+            } else {
+                console.warn("Toast não foi definido. Verifique se SweetAlert2 está sendo importado corretamente no app.js.");
+            }
+        });
+    </script>
+    @endif
     <x-form.form
         title="Editando Alerta"
         description="Edite os dados do alerta"

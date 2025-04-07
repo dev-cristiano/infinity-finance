@@ -17,6 +17,7 @@
 </head>
 
 <body class="bg-gray-50 antialiased">
+
     <div class="flex h-screen">
         <!-- Sidebar -->
         @include('partials.sidebar')
@@ -32,6 +33,7 @@
             </main>
         </div>
     </div>
+
     <!-- Transaction Modal -->
     @yield('modal')
 
