@@ -17,36 +17,39 @@
             name="titulo"
             label="Título"
             type="text"
-            placeholder="Nome do alerta"
+            placeholder="Ex: Cartão de crédito Nubank"
             data-field-name="Nome completo"
-            data-error-message="Por favor, informe seu nome completo"
             :required="true" />
 
         <x-form.input
             name="valor"
             label="Valor"
             :required="true"
+            decimal-currency-input
+            placeholder="Ex: 250,00"
             decimal-currency-input />
 
         <x-form.input
             name="data_alerta"
             label="Data Alerta"
             type="text"
-            placeholder="01/01/2025"
+            placeholder="Ex: 10/05/2025"
             required="true"
             data-date-input />
 
         <x-form.checkbox
             name="recorrente"
             label="Alerta Recorrente"
+            :checked="old('recorrente', $alerta->recorrente ?? false)"
+            id="recorrente"
             :checked="old('recorrente', $alerta->recorrente ?? false)" />
 
 
         <x-form.input
             name="data_alerta_final"
-            label="Ultimo Alerta"
+            label="Último Alerta"
             type="text"
-            placeholder="26/04/2025"
+            placeholder="Ex: 10/12/2025"
             required="true"
             data-date-input />
 
@@ -54,6 +57,6 @@
             name="descricao"
             label="Descrição"
             type="text"
-            placeholder="Descrição do Alerta" />
+            placeholder="Ex: Alerta de vencimento da fatura do cartão Nubank todo dia 10" />
     </x-form.form>
 </x-main>

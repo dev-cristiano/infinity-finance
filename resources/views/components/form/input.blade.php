@@ -7,9 +7,9 @@
 'value' => null,
 ])
 
-<div class="mb-6">
+<div class="mb-6" id="grupo_{{ $name }}">
     @if($label)
-    <label for="{{ $name }}" class="block text-sm font-medium text-gray-700 mb-2">
+    <label for="{{ $name }}" id="lb_{{ $name }}" class="block text-sm font-medium text-gray-700 mb-2">
         {{ $label }} @if($required)<span class="text-red-500">*</span>@endif
     </label>
     @endif
