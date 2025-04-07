@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\Button;
+namespace App\View\Components\Table;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class New extends Component
+class Pagination extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class New extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.button.new');
+        return view('components.table.pagination');
     }
 }

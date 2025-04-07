@@ -1,7 +1,11 @@
 @extends('layouts.app')
 @section('content')
 
-@props(['title' => '', 'description' => ''])
+@props([
+'title' => '',
+'description' => '',
+'buttons' => [],
+])
 
 <main class="flex-1 overflow-y-auto bg-gray-50 p-4 sm:p-6 lg:p-8">
     <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -15,11 +19,23 @@
             @endif
         </div>
 
-        <div class="flex gap-2">
-            {{ $actions ?? '' }}
+        @if(count($buttons))
+        <div class="flex flex-wrap gap-2">
+            @foreach($buttons as $button)
+            <x-button.btn-link
+                :href="$button['route'] ?? '#'"
+                :color="$button['color'] ?? 'green'"
+                :icon="$button['icon'] ?? true"
+                :outline="$button['outline'] ?? false"
+                :size="$button['size'] ?? 'md'">
+                {{ $button['title'] ?? 'Novo Item' }}
+            </x-button.btn-link>
+            @endforeach
         </div>
+        @endif
     </div>
 
     {{ $slot }}
 </main>
+
 @endsection

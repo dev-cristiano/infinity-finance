@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ReceitaController extends Controller
+class AlertaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('receitas.index');
+        return view('alerta.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class ReceitaController extends Controller
      */
     public function create()
     {
-        return view('receitas.create');
+        return view('alerta.create');
     }
 
     /**
@@ -28,7 +28,7 @@ class ReceitaController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //
     }
 
     /**

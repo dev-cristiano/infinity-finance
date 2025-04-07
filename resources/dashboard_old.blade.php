@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Infinity Finace</title>
+    <title>Dashboard - Poupi</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -16,7 +16,7 @@
         <aside class="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col">
             <div class="p-4 border-b flex items-center gap-2">
                 <span class="text-yellow-500 text-2xl font-bold">$</span>
-                <span class="text-xl font-bold">Infinity Finace</span>
+                <span class="text-xl font-bold">Poupi</span>
             </div>
             <nav class="flex-1 overflow-y-auto p-4">
                 <div class="space-y-1">
@@ -355,7 +355,7 @@
         </div>
     </div>
     <!-- Transaction Modal -->
-    <div id="transactionModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
         <div class="bg-white rounded-lg shadow-lg w-full max-w-xl mx-4">
             <div class="p-6">
                 <h2 class="text-xl font-bold mb-4">Nova Transação</h2>

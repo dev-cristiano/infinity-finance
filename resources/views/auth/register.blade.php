@@ -15,21 +15,20 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-yellow-50/30">
+<body class="bg-green-50/30">
     <div class="flex flex-col min-h-screen">
         <!-- Cabeçalho com navegação -->
         <header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
             <div class="container mx-auto px-4 flex h-16 items-center justify-between">
                 <div class="flex items-center gap-2">
                     <a href="/" class="flex items-center gap-2">
-                        <span class="text-yellow-500 text-2xl font-bold">$</span>
-                        <span class="text-xl font-bold">Infinity Finance</span>
+                        <span class="text-xl font-bold">Poupi</span>
                     </a>
                 </div>
                 <nav class="hidden md:flex gap-6">
-                    <a href="{{ route('welcome') }}" class="text-sm font-medium hover:text-yellow-500">Inicio</a>
-                    <a href="#precos" class="text-sm font-medium hover:text-yellow-500">Preços</a>
-                    <a href="#depoimentos" class="text-sm font-medium hover:text-yellow-500">Depoimentos</a>
+                    <a href="{{ route('welcome') }}" class="text-sm font-medium hover:text-green-500">Inicio</a>
+                    <a href="#precos" class="text-sm font-medium hover:text-green-500">Preços</a>
+                    <a href="#depoimentos" class="text-sm font-medium hover:text-green-500">Depoimentos</a>
                 </nav>
             </div>
         </header>
@@ -38,7 +37,7 @@
         <main class="flex-1 flex items-center justify-center py-12 px-4">
             <div class="w-full max-w-md">
                 <div class="bg-white rounded-lg shadow-lg p-8 border border-gray-100">
-                    
+
                     <!-- Formulário de cadastro -->
                     <form action="{{ route('register') }}" method="POST">
                         <!-- CSRF Token placeholder -->
@@ -48,7 +47,7 @@
                         <div class="mb-4">
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome completo</label>
                             <input type="text" id="name" name="name" required
-                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
                                 placeholder="Seu nome completo">
                         </div>
 
@@ -56,7 +55,7 @@
                         <div class="mb-4">
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
                             <input type="email" id="email" name="email" required
-                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
                                 placeholder="nome@exemplo.com">
                         </div>
 
@@ -64,7 +63,7 @@
                         <div class="mb-4">
                             <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Senha</label>
                             <input type="password" id="password" name="password" required
-                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
                                 placeholder="••••••••">
                             <p class="text-xs text-gray-500 mt-1">Mínimo de 8 caracteres</p>
                         </div>
@@ -73,20 +72,20 @@
                         <div class="mb-6">
                             <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-1">Confirme sua senha</label>
                             <input type="password" id="password_confirmation" name="password_confirmation" required
-                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
                                 placeholder="••••••••">
                         </div>
 
                         <!-- Termos e condições -->
                         <div class="flex items-start mb-6">
-                            <input type="checkbox" id="terms" name="terms" required class="h-4 w-4 mt-1 text-yellow-500 border-gray-300 rounded focus:ring-yellow-500">
+                            <input type="checkbox" id="terms" name="terms" required class="h-4 w-4 mt-1 text-green-500 border-gray-300 rounded focus:ring-green-500">
                             <label for="terms" class="ml-2 block text-sm text-gray-700">
-                                Eu concordo com os <a href="#" class="text-yellow-600 hover:text-yellow-700">Termos de Serviço</a> e <a href="#" class="text-yellow-600 hover:text-yellow-700">Política de Privacidade</a>
+                                Eu concordo com os <a href="#" class="text-green-600 hover:text-green-700">Termos de Serviço</a> e <a href="#" class="text-green-600 hover:text-green-700">Política de Privacidade</a>
                             </label>
                         </div>
 
                         <!-- Botão de envio -->
-                        <button type="submit" class="w-full bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                        <button type="submit" class="w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                             Criar conta
                         </button>
                     </form>
@@ -95,7 +94,7 @@
                     <div class="text-center mt-6">
                         <p class="text-sm text-gray-600">
                             Já tem uma conta?
-                            <a href="{{ route('login') }}" class="text-yellow-600 hover:text-yellow-700 font-medium">Entrar</a>
+                            <a href="{{ route('login') }}" class="text-green-600 hover:text-green-700 font-medium">Entrar</a>
                         </p>
                     </div>
                 </div>
@@ -107,7 +106,7 @@
                             <div class="w-full border-t border-gray-300"></div>
                         </div>
                         <div class="relative flex justify-center text-sm">
-                            <span class="px-2 bg-yellow-50/30 text-gray-500">Ou continue com</span>
+                            <span class="px-2 bg-green-50/30 text-gray-500">Ou continue com</span>
                         </div>
                     </div>
 
@@ -139,13 +138,13 @@
         <footer class="w-full border-t bg-white py-6">
             <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center gap-2">
-                    <span class="text-yellow-500 text-xl font-bold">$</span>
-                    <span class="text-xl font-bold">Infinity Finance</span>
+                    <span class="text-green-500 text-xl font-bold">$</span>
+                    <span class="text-xl font-bold">Poupi</span>
                 </div>
-                <p class="text-sm text-gray-500">&copy; {{ date('Y') }} Infinity Finance. Todos os direitos reservados.</p>
+                <p class="text-sm text-gray-500">&copy; {{ date('Y') }} Poupi. Todos os direitos reservados.</p>
                 <div class="flex gap-4">
-                    <a href="#" class="text-sm text-gray-500 hover:text-yellow-500">Termos</a>
-                    <a href="#" class="text-sm text-gray-500 hover:text-yellow-500">Privacidade</a>
+                    <a href="#" class="text-sm text-gray-500 hover:text-green-500">Termos</a>
+                    <a href="#" class="text-sm text-gray-500 hover:text-green-500">Privacidade</a>
                 </div>
             </div>
         </footer>
