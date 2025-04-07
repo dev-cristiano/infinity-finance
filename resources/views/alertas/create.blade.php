@@ -9,6 +9,11 @@
         :back="route('alertas.index')">
 
         <x-form.input
+            name="user_id"
+            :value="Auth::user()->id"
+            type="hidden" />
+
+        <x-form.input
             name="titulo"
             label="Título"
             type="text"
@@ -20,8 +25,6 @@
         <x-form.input
             name="valor"
             label="Valor"
-            type="text"
-            placeholder="0.00"
             :required="true"
             decimal-currency-input />
 
@@ -35,7 +38,9 @@
 
         <x-form.checkbox
             name="recorrente"
-            label="Alerta Recorrente" />
+            label="Alerta Recorrente"
+            :checked="old('recorrente', $alerta->recorrente ?? false)" />
+
 
         <x-form.input
             name="data_alerta_final"

@@ -22,8 +22,9 @@ class NewTransaction extends Component
 
     public function render(): View|Closure|string
     {
-        return view('components.modal.new-transaction', [
-            'categories' => $this->categories
-        ]);
+        return "Hello world";
+        // return view('components.modal.new-transaction', [
+        //     'categories' => $this->categories
+        // ]);
     }
 }

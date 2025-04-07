@@ -16,4 +16,4 @@ Route::post('/new-categories', [CategoryController::class, 'store'])->name('cate
 
 Route::get('/transactions', [ReceitaController::class, 'store'])->name('receitas.store');
 
-Route::get('/alertas', [AlertaController::class, 'store'])->name('alertas.store');
+Route::post('/alertas', [AlertaController::class, 'store'])->name('alertas.store');

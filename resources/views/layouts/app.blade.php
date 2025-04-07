@@ -14,6 +14,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @notifyCss
 </head>
 
 <body class="bg-gray-50 antialiased">
@@ -36,7 +37,8 @@
     @yield('modal')
 
     <!-- Scripts -->
-     @stack('scripts')
+    @stack('scripts')
+    @notifyJs
 </body>
 
 </html>

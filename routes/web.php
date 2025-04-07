@@ -27,7 +27,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/despesas/create', [DespesaController::class, 'create'])->name('despesas.create');
 
     Route::get('/alertas', [AlertaController::class, 'index'])->name('alertas.index');
+    Route::post('/alertas', [AlertaController::class, 'store'])->name('alertas.store');
     Route::get('/alertas/create', [AlertaController::class, 'create'])->name('alertas.create');
+    Route::get('/alertas/{id}/edit', [AlertaController::class, 'edit'])->name('alertas.edit');
 });
 
 require __DIR__ . '/auth.php';

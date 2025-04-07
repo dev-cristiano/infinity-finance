@@ -5,10 +5,14 @@
 ])
 
 <div class="mb-4 flex items-center gap-2">
+    <!-- hidden para garantir que sempre envie '0' se desmarcado -->
+    <input type="hidden" name="{{ $name }}" value="0" />
+
     <input
         type="checkbox"
         id="{{ $name }}"
         name="{{ $name }}"
+        value="1"
         {{ old($name, $checked) ? 'checked' : '' }}
         {{ $attributes->merge([
             'class' => 'rounded text-green-600 border-gray-300 focus:ring-green-500'

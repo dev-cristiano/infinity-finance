@@ -7,7 +7,7 @@
             <p class="mt-1 text-sm text-gray-500">Bem-vindo de volta, {{ Auth::user()->name }}! Aqui está uma visão geral das suas finanças.</p>
         </div>
         <div class="relative">
-            <x-modal.new-transaction />
+            <!-- <x-modal.new-transaction /> -->
         </div>
     </div>
     <!-- Cards -->

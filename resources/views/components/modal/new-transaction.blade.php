@@ -50,7 +50,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6">
+                q<div class="mb-6">
                     <div class="flex justify-between items-center mb-2">
                         <label for="category_id" class="block text-sm font-medium text-gray-700">Categoria*</label>
                         <button type="button" onclick="openCategoryModal()"

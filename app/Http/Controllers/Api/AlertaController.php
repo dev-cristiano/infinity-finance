@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Api\Alerta;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AlertaController extends Controller
 {
@@ -12,7 +15,8 @@ class AlertaController extends Controller
      */
     public function index()
     {
-        return view('alerta.index');
+        $alertas = Alerta::paginate(3);
+        return view('alertas.index', compact('alertas'));
     }
 
     /**
@@ -20,7 +24,7 @@ class AlertaController extends Controller
      */
     public function create()
     {
-        return view('alerta.create');
+        return view('alertas.create');
     }
 
     /**
@@ -28,7 +32,45 @@ class AlertaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        if (!empty($data['data_alerta'])) {
+            $data['data_alerta'] = Carbon::createFromFormat('d/m/Y', $data['data_alerta'])->format('Y-m-d');
+        }
+
+        if (!empty($data['data_alerta_final'])) {
+            $data['data_alerta_final'] = Carbon::createFromFormat('d/m/Y', $data['data_alerta_final'])->format('Y-m-d');
+        }
+
+        // Substitui os valores no request com as datas convertidas
+        $request->merge($data);
+
+        $validator = Validator::make($request->all(), [
+            'titulo' => 'required|string|max:255',
+            'descricao' => 'nullable|string',
+            'valor' => 'required|numeric|min:0.01',
+            'data_alerta' => 'required|date',
+            'data_alerta_final' => 'nullable|date',
+            'alerta_recorrente' => 'boolean',
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $alerta = Alerta::create([
+            'titulo' => $request->titulo,
+            'descricao' => $request->descricao,
+            'valor' => $request->valor,
+            'data_alerta' => $request->data_alerta,
+            'data_alerta_final' => $request->data_alerta_final,
+            'alerta_recorrente' => $request->alerta_recorrente ?? false,
+            'user_id' => $request->user_id,
+        ]);
+
+        notify()->success('Welcome to Laravel Notify ⚡️');
+        return redirect()->route('alertas.index')->with('success', 'Alerta criado com sucesso!');
     }
 
     /**
@@ -44,7 +86,7 @@ class AlertaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('alertas.edit');
     }
 
     /**
@@ -52,7 +94,7 @@ class AlertaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        dd($request->all());
     }
 
     /**

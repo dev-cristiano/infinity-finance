@@ -1,85 +1,68 @@
-/**
- * Date formatter for Brazilian format
- * Formats date inputs as the user types (DD/MM/YYYY)
- */
 export default function setupDateFormatter() {
-    // Find all elements with data-date-input attribute
     const dateInputs = document.querySelectorAll("[data-date-input]");
 
     dateInputs.forEach((input) => {
+        const hiddenInputName = `${input.name}_hidden`;
+        const form = input.closest("form");
+        const hiddenInput = form?.querySelector(
+            `input[name="${hiddenInputName}"]`
+        );
+
         input.addEventListener("input", function (e) {
-            // Get the raw input value and remove non-numeric characters
             let value = e.target.value.replace(/\D/g, "");
 
-            // Format as DD/MM/YYYY
-            if (value.length > 0) {
-                // Add first slash after day (after 2 digits)
-                if (value.length > 2) {
-                    value = value.substring(0, 2) + "/" + value.substring(2);
-                }
-
-                // Add second slash after month (after 5 characters including first slash)
-                if (value.length > 5) {
-                    value = value.substring(0, 5) + "/" + value.substring(5);
-                }
-
-                // Limit to 10 characters (DD/MM/YYYY)
-                if (value.length > 10) {
-                    value = value.substring(0, 10);
-                }
+            // Formatar como DD/MM/AAAA
+            if (value.length > 2) {
+                value = value.slice(0, 2) + "/" + value.slice(2);
+            }
+            if (value.length > 5) {
+                value = value.slice(0, 5) + "/" + value.slice(5);
+            }
+            if (value.length > 10) {
+                value = value.slice(0, 10);
             }
 
-            // Update the input value
             e.target.value = value;
 
-            // Dispatch a custom event with the formatted value
-            const formattedDate = value;
-            input.dispatchEvent(
-                new CustomEvent("date-updated", {
-                    detail: {
-                        formatted: formattedDate,
-                        // Also provide ISO format (YYYY-MM-DD) for backend processing
-                        iso:
-                            formattedDate.length === 10
-                                ? formattedDate.split("/").reverse().join("-")
-                                : null,
-                    },
-                })
-            );
+            // Se completo, converte para ISO
+            if (value.length === 10) {
+                const parts = value.split("/");
+                if (parts.length === 3) {
+                    const iso = `${parts[2]}-${parts[1]}-${parts[0]}`;
+                    if (hiddenInput) hiddenInput.value = iso;
+                }
+            } else {
+                if (hiddenInput) hiddenInput.value = "";
+            }
         });
 
-        // Add placeholder if not present
+        // Placeholder
         if (!input.placeholder) {
             input.placeholder = "DD/MM/AAAA";
         }
 
-        // Initialize with proper formatting if there's an initial value
+        // Inicializar valor se já existe
         if (
             input.value &&
-            input.value.length > 0 &&
+            input.value.length === 8 &&
             !input.value.includes("/")
         ) {
             const numericValue = input.value.replace(/\D/g, "");
             let formattedValue = "";
 
-            if (numericValue.length > 0) {
-                // Format initial value
-                if (numericValue.length > 2) {
-                    formattedValue += numericValue.substring(0, 2) + "/";
-                    if (numericValue.length > 4) {
-                        formattedValue +=
-                            numericValue.substring(2, 4) +
-                            "/" +
-                            numericValue.substring(4, 8);
-                    } else {
-                        formattedValue += numericValue.substring(2);
-                    }
-                } else {
-                    formattedValue = numericValue;
-                }
-            }
+            if (numericValue.length === 8) {
+                formattedValue = `${numericValue.slice(
+                    0,
+                    2
+                )}/${numericValue.slice(2, 4)}/${numericValue.slice(4, 8)}`;
+                input.value = formattedValue;
 
-            input.value = formattedValue;
+                const iso = `${numericValue.slice(4, 8)}-${numericValue.slice(
+                    2,
+                    4
+                )}-${numericValue.slice(0, 2)}`;
+                if (hiddenInput) hiddenInput.value = iso;
+            }
         }
     });
 }
