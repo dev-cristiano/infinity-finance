@@ -51,7 +51,7 @@ class Alerta extends Model
     {
         if ($this->data_alerta < date('Y-m-d')) {
             return 'Em Dia';
-        } else if ($this->data_alerta == date('Y-m-d')) {
+        } else if ($this->data_alerta === date('Y-m-d')) {
             return 'Hoje';
         } else if ($this->data_alerta > date('Y-m-d')) {
             return 'Atrasado';
