@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'maytapi' => [
+        'key' => env('MAYTAPI_API_KEY'),
+        'url' => env('MAYTAPI_URL'),
+    ],
+
 ];

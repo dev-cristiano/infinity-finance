@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AlertaController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ReceitaController;
 use App\Http\Controllers\Api\TransactionController;
+use App\Http\Controllers\MaytapiWhatsAppController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,5 @@ Route::get('/transactions', [ReceitaController::class, 'store'])->name('receitas
 
 Route::post('/alertas', [AlertaController::class, 'store'])->name('alertas.store');
 Route::put('/alertas/{id}', [AlertaController::class, 'update'])->name('alertas.update');
+
+Route::post('/whatsapp/send-message', [MaytapiWhatsAppController::class, 'sendMessage']);

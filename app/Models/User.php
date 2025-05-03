@@ -65,4 +65,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Alerta::class);
     }
+
+    public function routeNotificationForWhatsApp()
+    {
+        return $this->whatsapp_number;
+    }
 }

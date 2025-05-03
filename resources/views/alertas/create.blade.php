@@ -31,7 +31,7 @@
 
         <x-form.input
             name="data_alerta"
-            label="Data Alerta"
+            label="Data do Alerta"
             type="text"
             placeholder="Ex: 10/05/2025"
             required="true"

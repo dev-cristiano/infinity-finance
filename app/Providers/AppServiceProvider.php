@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Channels\WhatsAppChannel;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
+use Twilio\Rest\Client;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Notification::extend('whatsapp', function ($app) {
+            return new WhatsAppChannel(new Client(
+                config('services.twilio.sid'),
+                config('services.twilio.token')
+            ));
+        });
     }
 }
