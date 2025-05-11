@@ -15,24 +15,22 @@ return new class extends Migration
             // Identificação
             $table->id();
 
-            // Dados básicos
-            $table->string('descricao', 200);
-            $table->decimal('valor', 12, 2); // Aumentado para valores maiores
-            $table->date('data_recebimento')->index(); // Index para consultas frequentes
-            $table->date('data_vencimento')->nullable()->index();
-            $table->string('status_id')->default(1);
-
-            // Informações adicionais
-            $table->text('observacao')->nullable();
-            $table->string('fonte_pagadora', 100)->nullable();
-            $table->enum('metodo_recebimento', ['dinheiro', 'pix', 'transferencia', 'cartao', 'outro'])->nullable();
-
-            // Controle
-            $table->boolean('fixa')->default(false); // Para receitas fixas/mensais
-            $table->date('data_fim_recorrencia')->nullable(); // Para controle de recorrência
-
             // Relacionamentos
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+           
+            // Dados básicos
+            $table->string('descricao', 255);
+            $table->decimal('valor', 12, 2); 
+            $table->date('data_recebimento')->index();
+            $table->string('status')->default(['pendente', 'recebido', 'cancelado'])->default('pendente');
+
+            // Informações adicionais
+            $table->string('fonte_pagadora', 100)->nullable();
+            $table->enum('metodo_recebimento', ['cartao_credito',          'cartao_debito', 'dinheiro', 'pix', 'transferencia',
+            'outro'])->nullable();
+
+            // Controle
+            $table->boolean('fixa')->default(false);
 
             // Timestamps
             $table->timestamps();

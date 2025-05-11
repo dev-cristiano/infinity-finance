@@ -23,6 +23,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/receitas', [ReceitaController::class, 'index'])->name('receitas.index');
     Route::get('/receitas/create', [ReceitaController::class, 'create'])->name('receitas.create');
+    Route::get('/receitas/{id}/edit', [ReceitaController::class, 'edit'])->name('receitas.edit');
 
     Route::get('/despesas', [DespesaController::class, 'index'])->name('despesas.index');
     Route::get('/despesas/create', [DespesaController::class, 'create'])->name('despesas.create');

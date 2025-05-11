@@ -2,10 +2,10 @@
 'name',
 'label' => null,
 'checked' => false,
+'required'
 ])
 
 <div class="mb-4 flex items-center gap-2">
-    <!-- hidden para garantir que sempre envie '0' se desmarcado -->
     <input type="hidden" name="{{ $name }}" value="0" />
 
     <input

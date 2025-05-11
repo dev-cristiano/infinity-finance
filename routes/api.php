@@ -20,4 +20,7 @@ Route::get('/transactions', [ReceitaController::class, 'store'])->name('receitas
 Route::post('/alertas', [AlertaController::class, 'store'])->name('alertas.store');
 Route::put('/alertas/{id}', [AlertaController::class, 'update'])->name('alertas.update');
 
+Route::post('/receitas', [ReceitaController::class, 'store'])->name('receitas.store');
+Route::put('/receitas/{id}', [ReceitaController::class, 'update'])->name('receitas.update');
+
 Route::post('/whatsapp/send-message', [MaytapiWhatsAppController::class, 'sendMessage']);

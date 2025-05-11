@@ -32,7 +32,8 @@
         <x-form.input
             name="data_alerta"
             label="Data do Alerta"
-            type="text"
+            type="date"
+            :value="now()->format('Y-m-d')"
             placeholder="Ex: 10/05/2025"
             required="true"
             data-date-input />

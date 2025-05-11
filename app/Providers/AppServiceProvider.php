@@ -22,11 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Notification::extend('whatsapp', function ($app) {
-            return new WhatsAppChannel(new Client(
-                config('services.twilio.sid'),
-                config('services.twilio.token')
-            ));
-        });
+        //
     }
 }

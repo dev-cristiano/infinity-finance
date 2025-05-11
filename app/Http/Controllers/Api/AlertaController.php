@@ -105,9 +105,8 @@ class AlertaController extends Controller
             $data['data_alerta_final'] = Carbon::createFromFormat('d/m/Y', $data['data_alerta_final'])->format('Y-m-d');
         }
 
-        $request->merge($data); // Substitui no request os valores já convertidos
+        $request->merge($data);
 
-        // Agora sim: valida com as datas em formato válido
         $validator = Validator::make($request->all(), [
             'titulo' => 'required|string|max:255',
             'descricao' => 'nullable|string',

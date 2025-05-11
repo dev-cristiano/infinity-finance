@@ -1,8 +1,12 @@
 <x-main
-    :button="['route' => route('alertas.store')]">
+    title="Minhas Receitas"
+    description="Visualize, edite e gerencie todas as suas receitas."
+    :route="route('receitas.update', $receita->id)"
+    method="PUT"
+    :back="route('alertas.index')">
 
     <x-form.form
-        title="Cadastre uma nova receita"
+        title="Editando Receita"
         description="Gerencie suas receitas"
         :route="route('receitas.store')"
         method="POST"
@@ -18,22 +22,23 @@
             label="Descrição"
             type="text"
             placeholder="Ex: Salário"
-            :required="true" />
+            :required="true"
+            :value="old('descricao', $receita->descricao ?? '')" />
 
         <x-form.input
             name="valor"
             label="Valor"
             type="number"
             placeholder="Ex: 1500"
-            decimal-currency-input
-            :required="true" />
+            :required="true"
+            :value="old('valor', $receita->valor ?? '')" />
 
         <x-form.input
             name="data_recebimento"
             label="Data de recebimento"
             type="date"
             :required="true"
-            :value="now()->format('Y-m-d')" />
+            :value="old('data_recebimento', $receita->data_recebimento ?? '')" />
 
         <x-form.select
             name="status"
@@ -43,12 +48,14 @@
             'recebido' => 'Recebido', 
             'cancelado' => 'Cancelado']"
             placeholder="Selecione o status"
+            :selected="old('status', $receita->status ?? '')"
             required />
 
         <x-form.input
             name="fonte_pagadora"
             label="Fonte pagadora"
             type="text"
+            :value="old('fonte_pagadora', $receita->fonte_pagadora ?? '')"
             :required="true" />
 
         <x-form.select
@@ -62,12 +69,14 @@
             'transferencia' => 'Transferência',
             'outro' => 'Outro']"
             placeholder="Selecione o status"
+            :selected="old('metodo_recebimento', $receita->metodo_recebimento ?? '')"
             required />
 
         <x-form.checkbox
             name="fixa"
             label="Receita fixa?"
             type="checkbox"
+            :checked="old('fixa', $receita->fixa ?? '')"
             :required="true" />
     </x-form.form>
 </x-main>
