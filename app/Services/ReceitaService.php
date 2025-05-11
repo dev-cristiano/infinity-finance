@@ -5,8 +5,6 @@ namespace App\Services;
 use App\Models\Api\Receitas;
 use App\Repositories\Interfaces\ReceitaRepositoryInterface;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 
 class ReceitaService
 {
@@ -30,19 +28,17 @@ class ReceitaService
      * 
      * @return \Illuminate\Database\Eloquent\Collection
      */
-
     public function getAllReceitas()
     {
         return $this->receitaRepository->getAll();
     }
 
     /**
-     * Encontrar receita por id
+     * Encontrar uma receita específica pelo ID
      * 
      * @param string $id
-     * @return Receitas 
+     * @return Receitas
      */
-
     public function getReceitaById(string $id)
     {
         return $this->receitaRepository->findById($id);
@@ -57,9 +53,12 @@ class ReceitaService
     public function createReceita(array $data)
     {
         try {
+            // Aqui podemos adicionar qualquer lógica de negócio antes de criar a receita
+            // Por exemplo, formatação de dados, cálculos, etc.
+
             return $this->receitaRepository->create($data);
         } catch (\Exception $e) {
-            Log::erro('Erro ao criar receita' . $e->getMessage());
+            Log::error('Erro ao criar receita: ' . $e->getMessage());
             throw $e;
         }
     }
@@ -74,6 +73,8 @@ class ReceitaService
     public function updateReceita(string $id, array $data)
     {
         try {
+            // Aqui podemos adicionar qualquer lógica de negócio antes de atualizar a receita
+
             return $this->receitaRepository->update($id, $data);
         } catch (\Exception $e) {
             Log::error('Erro ao atualizar receita: ' . $e->getMessage());
@@ -87,10 +88,15 @@ class ReceitaService
      * @param string $id
      * @return bool
      */
-
     public function deleteReceita(string $id)
     {
-        $receita = $this->getReceitaById($id);
-        return $receita->delete();
+        try {
+            // Aqui podemos adicionar lógica antes de excluir, como verificar dependências
+
+            return $this->receitaRepository->delete($id);
+        } catch (\Exception $e) {
+            Log::error('Erro ao excluir receita: ' . $e->getMessage());
+            throw $e;
+        }
     }
 }

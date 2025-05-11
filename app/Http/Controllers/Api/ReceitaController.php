@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Receitas\UpdateReceitaRequest;
 use App\Http\Requests\Receitas\StoreReceitaRequest;
 use App\Services\ReceitaService;
 
@@ -53,6 +54,7 @@ class ReceitaController extends Controller
             return redirect()->route('receitas.index')
                 ->with('success', 'Receita criada com sucesso!');
         } catch (\Exception $e) {
+
             return redirect()->back()
                 ->with('error', 'Erro ao criar receita: ' . $e->getMessage())
                 ->withInput();
@@ -66,8 +68,7 @@ class ReceitaController extends Controller
     {
         try {
             $receita = $this->receitaService->getReceitaById($id);
-            // return view('receita.show', compact('receita'));
-            return $id;
+            return view('receita.show', compact('receita'));
         } catch (\Exception $e) {
             return redirect()->route('receitas.index')
                 ->with('error', 'Receita não encontrada.');
@@ -84,7 +85,34 @@ class ReceitaController extends Controller
             return view('receitas.edit', compact('receita'));
         } catch (\Exception $e) {
             return redirect()->route('receitas.index')
-                ->with('error', 'Receita não encontrada.');
+                ->with('error', 'Erro ao encontrar receita');
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateReceitaRequest $request, string $id)
+    {
+        $data = $request->validated();
+        $this->receitaService->updateReceita($id, $data);
+
+        return redirect()->route('receitas.index')
+            ->with('success', 'Receita atualizada com sucesso!');
+    }
+
+    /**
+     * Delete the specified resource
+     */
+    public function destroy(string $id)
+    {
+        try {
+            $this->receitaService->deleteReceita($id);
+            return redirect()->route('receitas.index')
+                ->with('success', 'Registro deletado com sucesso.');
+        } catch (\Exception $e) {
+            return redirect()->route('receitas.index')
+                ->with('error', 'Erro ao deletar receita: ' . $e->getMessage());
         }
     }
 }

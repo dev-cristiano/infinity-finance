@@ -1,5 +1,10 @@
 import Swal from "sweetalert2";
 
+/**
+ * Alerta de confirmação de exclusão
+ * @param {string} url - Endpoint para DELETE
+ * @param {object} options - Opções personalizadas
+ */
 export function confirmDelete(url, options = {}) {
     Swal.fire({
         title: options.title || "Tem certeza?",
@@ -36,9 +41,7 @@ export function confirmDelete(url, options = {}) {
                         });
                     } else {
                         return res.json().then((err) => {
-                            throw new Error(
-                                err.message || "Erro desconhecido ao excluir."
-                            );
+                            throw new Error(err.message || "Erro ao excluir.");
                         });
                     }
                 })
@@ -46,9 +49,7 @@ export function confirmDelete(url, options = {}) {
                     console.error(error);
                     Swal.fire({
                         title: "Erro!",
-                        text:
-                            error.message ||
-                            "Não foi possível excluir o registro.",
+                        text: error.message || "Não foi possível excluir.",
                         icon: "error",
                     });
                 });

@@ -24,7 +24,7 @@
             name="valor"
             label="Valor"
             type="number"
-            placeholder="Ex: 1500"
+            placeholder="Ex: 1.500"
             decimal-currency-input
             :required="true" />
 

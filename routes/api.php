@@ -20,7 +20,10 @@ Route::get('/transactions', [ReceitaController::class, 'store'])->name('receitas
 Route::post('/alertas', [AlertaController::class, 'store'])->name('alertas.store');
 Route::put('/alertas/{id}', [AlertaController::class, 'update'])->name('alertas.update');
 
+// Routas das receitas
 Route::post('/receitas', [ReceitaController::class, 'store'])->name('receitas.store');
 Route::put('/receitas/{id}', [ReceitaController::class, 'update'])->name('receitas.update');
+Route::delete('/receitas/{id}', [ReceitaController::class, 'destroy'])->name('receitas.destroy');
 
+// Routa de envio de mensagens via WhatsApp com os dados dos boletos a vencerem
 Route::post('/whatsapp/send-message', [MaytapiWhatsAppController::class, 'sendMessage']);

@@ -13,28 +13,32 @@ class ReceitaRepository implements ReceitaRepositoryInterface
     protected $model;
 
     /**
-     * Construtor de injeção do modelo
+     * Construtor com injeção do modelo
      */
-
     public function __construct(Receitas $model)
     {
         $this->model = $model;
     }
 
+    /**
+     * Obter todas as receitas
+     * 
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function getAll()
     {
         return $this->model->all();
     }
 
     /**
-     * Obter todas as receitas pelo ID
+     * Encontrar uma receita pelo ID
+     * 
      * @param string $id
-     * return Receitas
+     * @return Receitas
      */
-
     public function findById(string $id)
     {
-        return $this->model->findById($id);
+        return $this->model->findOrFail($id);
     }
 
     /**
@@ -43,7 +47,6 @@ class ReceitaRepository implements ReceitaRepositoryInterface
      * @param array $data
      * @return Receitas
      */
-
     public function create(array $data)
     {
         return $this->model->create($data);
@@ -56,10 +59,9 @@ class ReceitaRepository implements ReceitaRepositoryInterface
      * @param array $data
      * @return Receitas
      */
-
     public function update(string $id, array $data)
     {
-        $receita = $this->model->findById($id);
+        $receita = $this->findById($id);
         $receita->update($data);
         return $receita;
     }
@@ -70,10 +72,9 @@ class ReceitaRepository implements ReceitaRepositoryInterface
      * @param string $id
      * @return bool
      */
-
     public function delete(string $id)
     {
-        $receita = $this->model->findById($id);
+        $receita = $this->findById($id);
         return $receita->delete();
     }
 }

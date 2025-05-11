@@ -11,41 +11,38 @@ interface ReceitaRepositoryInterface
      * 
      * @return \Illuminate\Database\Eloquent\Collection
      */
-
     public function getAll();
 
     /**
-     * Encontrar uma receita por ID
+     * Encontrar uma receita pelo ID
      * 
-     * @param int $id
+     * @param string $id
      * @return Receitas
      */
     public function findById(string $id);
 
     /**
-     * Cria uma nova receita
+     * Criar uma nova receita
      * 
      * @param array $data
-     * return Receitas
+     * @return Receitas
      */
-
     public function create(array $data);
 
     /**
-     * Atualiza uma receita existente
-
-     * @param int $id
+     * Atualizar uma receita existente
+     * 
+     * @param string $id
      * @param array $data
-     * return Receitas
+     * @return Receitas
      */
-
     public function update(string $id, array $data);
 
     /**
      * Deletar uma receita
-     * @param int $id
+     * 
+     * @param string $id
      * @return bool
      */
-
     public function delete(string $id);
 }

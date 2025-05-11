@@ -1,15 +1,9 @@
-<x-main
-    title="Minhas Receitas"
-    description="Visualize, edite e gerencie todas as suas receitas."
-    :route="route('receitas.update', $receita->id)"
-    method="PUT"
-    :back="route('alertas.index')">
-
+<x-main>
     <x-form.form
         title="Editando Receita"
         description="Gerencie suas receitas"
-        :route="route('receitas.store')"
-        method="POST"
+        :route="route('receitas.update', $receita->id)"
+        method="PUT"
         :back="route('receitas.index')">
 
         <x-form.input

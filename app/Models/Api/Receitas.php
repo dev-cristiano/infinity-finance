@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use App\Helpers\FormataValor;
-use Pest\Mutate\Mutators\Laravel\Unwrap\LaravelUnwrapStrUpper;
-
 class Receitas extends Model
 {
     use HasFactory, SoftDeletes;
@@ -28,5 +25,10 @@ class Receitas extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getFixaAttribute($value)
+    {
+       return $value ? 'Sim' : 'Não';
     }
 }

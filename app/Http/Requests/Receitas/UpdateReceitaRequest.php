@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Receitas\Requests;
+namespace App\Http\Requests\Receitas;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,7 +11,7 @@ class UpdateReceitaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return true; // Você pode implementar lógica de autorização aqui
     }
 
     /**
